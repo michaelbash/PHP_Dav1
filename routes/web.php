@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+Route::get('/email', function () {
+    Mail::to('mikheil.basheleishvili.1@btu.edu.ge')->send(new WelcomeMail());
+
+
+    return new WelcomeMail();
 });
 
 Route::get('test', [\App\Http\Controllers\Test_Controller_Dav1::class, 'index']);
